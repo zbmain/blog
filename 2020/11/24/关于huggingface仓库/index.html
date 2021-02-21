@@ -70,7 +70,7 @@
 </li>
 </ul>
 <h1 id="加载个人模型"><a href="#加载个人模型" class="headerlink" title="加载个人模型"></a>加载个人模型</h1><ul>
-<li><p>推荐使用torch.hub.load() 讲义中的方法：<!--因为shell脚本运行的py文件是torch训练生成的模型--></p>
+<li><p>推荐使用torch.hub.load() 方法：<!--因为shell脚本运行的py文件是torch训练生成的模型--></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># source，part，model参数</span><br><span class="line">tokenizer &#x3D; torch.hub.load()</span><br><span class="line">model &#x3D; torch.hub.load()</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>使用huggingface.co 推荐transformers-api： (需升级transformers)</p>
