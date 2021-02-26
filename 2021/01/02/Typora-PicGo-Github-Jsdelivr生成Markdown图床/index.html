@@ -28,17 +28,53 @@
  replay-btn" aria-hidden="true"></i></a>
     <div class="post-title">
         <p>
-            about
+            Typora + PicGo + Github + Jsdelivr 生成Md图床
         </p>
         <hr>
     </div>
     <div class="post-content">
-        <ul>
-<li><p>姓名：ZB</p>
-</li>
-<li><p>e-mail：<a href="mailto:&#122;&#98;&#109;&#97;&#x69;&#x6e;&#x40;&#113;&#113;&#46;&#x63;&#x6f;&#x6d;">&#122;&#98;&#109;&#97;&#x69;&#x6e;&#x40;&#113;&#113;&#46;&#x63;&#x6f;&#x6d;</a></p>
+        <h2 id="图床制作："><a href="#图床制作：" class="headerlink" title="图床制作："></a>图床制作：</h2><ul>
+<li>Typora Markdown编辑器<ul>
+<li>设置-图像-上传服务设置中，选择PicGo</li>
+</ul>
 </li>
 </ul>
+<ul>
+<li>PicGo图床工具<ul>
+<li>选择Github图床（免费）<ul>
+<li>七牛等需要备案的域名</li>
+<li>COS，OSS，S3等需要收费（个人使用低廉）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Github图床服务站<ul>
+<li>创建仓库</li>
+<li>个人设置中生成repo-Token(PicGo设置Github图床需要此Token)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Jsdelivr作为Github的CDN加速<ul>
+<li>在PicGo中填写Github图床站点链接格式（最好使用CDN链接）：<ul>
+<li>Github默认：<code>https://raw.githubusercontent.com/[用户名]/[仓库]/[分支]</code></li>
+<li>CDN链接：<code>https://cdn.jsdelivr.net/gh/[用户名]/[仓库]@[分支]</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="经验心得："><a href="#经验心得：" class="headerlink" title="经验心得："></a>经验心得：</h2><ul>
+<li><p>设置操作比较简单，百度有更详细的教程。</p>
+</li>
+<li><p>为Github设置Pages，在PicGo中链接使用Pages的自定义域名后，虽然资源可以访问到，但是PicGo中失效，需要重启Typora才可以更新初图片，所以最佳链接地址使用cdn.jsdelivr.net的链接。</p>
+</li>
+<li><p>也可以随意上传其他文件，就可以直接得到外网访问链接了。</p>
+</li>
+</ul>
+<p>创建好图床配置成功之后，Typora中插入图片时，图片地址可以自动转换为外部链接。</p>
 
     </div>
 
