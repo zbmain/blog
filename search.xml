@@ -232,4 +232,71 @@
 </ul>
 ]]></content>
   </entry>
+  <entry>
+    <title>科学上网</title>
+    <url>/2019/12/01/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/</url>
+    <content><![CDATA[<h2 id="上网工具："><a href="#上网工具：" class="headerlink" title="上网工具："></a>上网工具：</h2><ul>
+<li>浏览器扩展插件（只能代理浏览器HTTP）：<ul>
+<li>集装箱<ul>
+<li>功能：<ul>
+<li>免费VPN，作者设置代理了Google搜索、Store、学术等，支持自定义Rule。</li>
+<li>百度网盘直链下载。</li>
+<li>Aria2UI界面。</li>
+<li>安装：<a href="https://a.newday.me/?scene=index_index_index">工具官网</a></li>
+<li><font color="red">自定义Rule，即可以自定义添加规则域名。</font></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>谷歌iGG<ul>
+<li>功能：永久免费提供谷歌搜索，gmail，Chrome Store,Android/Golang等谷歌产品加速访问。支持大部分谷歌二级域名。傻瓜式一键操作。</li>
+<li>安装：<a href="https://iguge.app/">CRX包链接</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<ul>
+<li><p>应用APP（可代理Socket）：</p>
+<ul>
+<li><p>小飞机</p>
+<ul>
+<li><p>介绍：代理工具，它只是工具软件，实现科学上网还需要配置节点。</p>
+</li>
+<li><p>下载：</p>
+<ul>
+<li><a href="https://github.com/shadowsocks/shadowsocks-windows/releases">Windows</a></li>
+<li><a href="https://github.com/shadowsocks/ShadowsocksX-NG/releases">MacOS</a></li>
+</ul>
+</li>
+<li><p>免费节点：</p>
+<ul>
+<li><a href="https://ssrtool.us/">时效长</a></li>
+<li><a href="https://lncn.org/">时效短</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>V2ray</p>
+<ul>
+<li>介绍：与小飞机（SSR）类似，V2ray加密更好。</li>
+<li>百度、github查找下载。</li>
+<li>免费节点：小飞机里的免费节点也有V2ray类型的。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<h2 id="心得建议："><a href="#心得建议：" class="headerlink" title="心得建议："></a>心得建议：</h2><ul>
+<li><p>只需浏览器代理HTTP上网，直接安装浏览器插件：iGG、集装箱即可，不需找节点配置。</p>
+</li>
+<li><p>如果要代理Socket，那只能安装SSR小飞机、V2ray。</p>
+</li>
+</ul>
+]]></content>
+  </entry>
 </search>
