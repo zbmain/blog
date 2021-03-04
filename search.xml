@@ -72,7 +72,7 @@
   </entry>
   <entry>
     <title>Hello hexo</title>
-    <url>/2019/01/01/hello%20hexo/</url>
+    <url>/2016/05/08/hello%20hexo/</url>
     <content><![CDATA[<p><br><br><br><br><br><br><br></p>
 <center><font face="黑体" size=18>hexo & pages</font><center>
 <br><br><br><br><br><br><br>
@@ -80,7 +80,7 @@
   </entry>
   <entry>
     <title>月租十美元服务器:6核 16G 320GB固态（可重复租）</title>
-    <url>/2020/10/20/vultr%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
+    <url>/2020/12/20/vultr%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
     <content><![CDATA[<h1 id="十美元重复租用-Vultr-CPU-VPS-gt-gt-深度学习"><a href="#十美元重复租用-Vultr-CPU-VPS-gt-gt-深度学习" class="headerlink" title="十美元重复租用 Vultr CPU VPS &gt;&gt; 深度学习"></a><font color=red face="微软雅黑">十美元重复租用 Vultr CPU VPS &gt;&gt; 深度学习</font></h1><h2 id="1-注册账户"><a href="#1-注册账户" class="headerlink" title="1.注册账户"></a>1.注册账户</h2><ul>
 <li>注册Vultr账户：<ul>
 <li><del>不要直接去官网vultr.com注册。</del></li>
@@ -149,7 +149,7 @@
   </entry>
   <entry>
     <title>创建个人huggingface远程仓库</title>
-    <url>/2020/08/24/%E5%85%B3%E4%BA%8Ehuggingface%E4%BB%93%E5%BA%93/</url>
+    <url>/2020/10/08/%E5%85%B3%E4%BA%8Ehuggingface%E4%BB%93%E5%BA%93/</url>
     <content><![CDATA[<h1 id="创建个人huggingface远程仓库"><a href="#创建个人huggingface远程仓库" class="headerlink" title="创建个人huggingface远程仓库"></a>创建个人huggingface远程仓库</h1><h1 id="模型上传"><a href="#模型上传" class="headerlink" title="模型上传"></a>模型上传</h1><h2 id="1-transformers-cli-接口方式"><a href="#1-transformers-cli-接口方式" class="headerlink" title="1.transformers-cli 接口方式"></a>1.transformers-cli 接口方式</h2>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">transformers-cli upload .&#x2F;test&#x2F;</span><br></pre></td></tr></table></figure>
 
 <ul>
@@ -204,7 +204,7 @@
   </entry>
   <entry>
     <title>我的公众号</title>
-    <url>/2019/05/20/%E6%88%91%E7%9A%84%E5%85%AC%E4%BC%97%E5%8F%B7/</url>
+    <url>/2016/12/20/%E6%88%91%E7%9A%84%E5%85%AC%E4%BC%97%E5%8F%B7/</url>
     <content><![CDATA[<p><img src="https://cdn.jsdelivr.net/gh/zbmain/imgchr@master/imgs/20210301132152.jpg"></p>
 ]]></content>
   </entry>
@@ -220,7 +220,7 @@
   </entry>
   <entry>
     <title>Linux中使用matplotlib库报错问题</title>
-    <url>/2020/05/23/%E6%9C%8D%E5%8A%A1%E5%99%A8plt%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    <url>/2020/09/30/%E6%9C%8D%E5%8A%A1%E5%99%A8plt%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<h1 id="Linux服务器中python使用matplotlib库报错："><a href="#Linux服务器中python使用matplotlib库报错：" class="headerlink" title="Linux服务器中python使用matplotlib库报错："></a>Linux服务器中python使用matplotlib库报错：</h1><h2 id="CXXABI-1-3-9-解决方案："><a href="#CXXABI-1-3-9-解决方案：" class="headerlink" title="CXXABI_1.3.9 解决方案："></a>CXXABI_1.3.9 解决方案：</h2><ul>
 <li><p>1.更新系统中的 libstdc++ 为connda中的版本（修改对应自己anaconda中版本文件）：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 按顺序执行(含义自行解读)</span><br><span class="line">sudo cp &#x2F;root&#x2F;anaconda3&#x2F;lib&#x2F;libstdc++.so.6.0.26 &#x2F;usr&#x2F;lib64&#x2F;</span><br><span class="line">sudo mv &#x2F;usr&#x2F;lib64&#x2F;libstdc++.so.6 &#x2F;usr&#x2F;lib64&#x2F;libstdc++.so.6_backup</span><br><span class="line">sudo ln -s &#x2F;root&#x2F;anaconda3&#x2F;lib&#x2F;libstdc++.so.6.0.26 &#x2F;usr&#x2F;lib64&#x2F;libstdc++.so.6</span><br></pre></td></tr></table></figure>
