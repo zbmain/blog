@@ -71,17 +71,9 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello hexo</title>
-    <url>/2016/05/08/hello%20hexo/</url>
-    <content><![CDATA[<p><br><br><br><br><br><br><br></p>
-<center><font face="黑体" size=18>hexo & pages</font><center>
-<br><br><br><br><br><br><br>
-]]></content>
-  </entry>
-  <entry>
     <title>月租十美元服务器:6核 16G 320GB固态（可重复租）</title>
     <url>/2020/12/20/vultr%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
-    <content><![CDATA[<h1 id="十美元重复租用-Vultr-CPU-VPS-gt-gt-深度学习"><a href="#十美元重复租用-Vultr-CPU-VPS-gt-gt-深度学习" class="headerlink" title="十美元重复租用 Vultr CPU VPS &gt;&gt; 深度学习"></a><font color=red face="微软雅黑">十美元重复租用 Vultr CPU VPS &gt;&gt; 深度学习</font></h1><h2 id="1-注册账户"><a href="#1-注册账户" class="headerlink" title="1.注册账户"></a>1.注册账户</h2><ul>
+    <content><![CDATA[<h1 id="十美元重复租用-Vultr-CPU-VPS-gt-gt-AI学习"><a href="#十美元重复租用-Vultr-CPU-VPS-gt-gt-AI学习" class="headerlink" title="十美元重复租用 Vultr CPU VPS &gt;&gt; AI学习"></a><font color=red face="微软雅黑">十美元重复租用 Vultr CPU VPS &gt;&gt; AI学习</font></h1><h2 id="1-注册账户"><a href="#1-注册账户" class="headerlink" title="1.注册账户"></a>1.注册账户</h2><ul>
 <li>注册Vultr账户：<ul>
 <li><del>不要直接去官网vultr.com注册。</del></li>
 <li>通过活动链接（<a href="https://www.baidu.com/s?wd=Vultr">新用户注册送$100</a>）注册账户。</li>
@@ -107,24 +99,30 @@
 <li><del>如果出现SSH无法连接，可以检测下IP是否被污染墙外。如果是，可换个地区重新创建实例。</del></li>
 </ul>
 <h2 id="3-安装环境"><a href="#3-安装环境" class="headerlink" title="3.安装环境"></a>3.安装环境</h2><ul>
-<li>服务器当前是Vultr CentOS裸系统，根据个人需求安装环境：<ul>
-<li>关于我的Shell脚本（支持一键安装Python-AI集成开发环境）：<ul>
-<li>一键安装、卸载：Python3.7.4、Anaconda3、Python-AI集成环境（仅包含<a href="https://zbmain.com/files/env/ai.yaml">AI领域常用库</a>）</li>
-<li>命令：<code>wget http://zbmain.com/files/env/zblinux.sh &amp;&amp; bash zblinux.sh</code></li>
-<li>注意：<ul>
+<li><p>服务器当前是Vultr CentOS裸系统，根据个人需求安装环境：</p>
+<ul>
+<li><p>关于我的Shell脚本（支持一键安装Python-AI集成开发环境）：</p>
+<ul>
+<li><p>一键安装、卸载：Python3.7.4、Anaconda3、Python-AI集成环境（仅包含<a href="https://zbmain.com/files/env/ai.yaml">AI领域常用库</a>）</p>
+</li>
+<li><p>命令：<code>wget http://zbmain.com/files/env/zblinux.sh &amp;&amp; bash zblinux.sh</code></p>
+</li>
+<li><p>注意：</p>
+<ul>
 <li>创建Python-AI集成环境，需要先安装：Python3.7.4 和 Anaconda3。</li>
 <li>个人服务器放心使用脚本，共有服务器注意安装Python3.7.4脚本时yum安装了以下库包：<ul>
 <li><font color='LightSlateGray'>gcc gcc-c++ kernel-devel make zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel libffi-devel</font></li>
+<li><img src="https://cdn.jsdelivr.net/gh/zbmain/imgchr@master/imgs/20210314174427.png"></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
+<li><p><font color=red>到此，服务器环境已经可以正常使用。</font></p>
+</li>
 </ul>
 </li>
-<li>一键脚本操作基本不会出现问题，如有错误请联系我或自行百度。</li>
-<li><font color=red>到此，服务器环境已经可以正常使用。</font></li>
 </ul>
 <h2 id="4-心得经验"><a href="#4-心得经验" class="headerlink" title="4.心得经验"></a>4.心得经验</h2><ul>
 <li>$100有效期，从激活日开始算+30day。</li>
@@ -146,6 +144,14 @@
       <tags>
         <tag>vultr</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello hexo</title>
+    <url>/2016/05/08/hello%20hexo/</url>
+    <content><![CDATA[<p><br><br><br><br><br><br><br></p>
+<center><font face="黑体" size=18>hexo & pages</font><center>
+<br><br><br><br><br><br><br>
+]]></content>
   </entry>
   <entry>
     <title>创建个人huggingface远程仓库</title>
