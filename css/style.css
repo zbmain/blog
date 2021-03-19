@@ -19,6 +19,9 @@ a:hover {
   text-align: center;
   margin-top: 30px;
   color: #ccc;
+  overflow: visible;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .clear {
   clear: both;

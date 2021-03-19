@@ -21,6 +21,14 @@
 ]]></content>
   </entry>
   <entry>
+    <title>Hello hexo</title>
+    <url>/2016/05/08/%E5%90%8E%E7%AB%AF/Hello%20hexo/</url>
+    <content><![CDATA[<p><br><br><br><br><br><br><br></p>
+<center><font face="黑体" size=18>hexo & pages</font><center>
+<br><br><br><br><br><br><br>
+]]></content>
+  </entry>
+  <entry>
     <title>月租十美元服务器:6核 16G 320GB固态（可重复租）</title>
     <url>/2020/12/20/%E5%90%8E%E7%AB%AF/Vultr%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
     <content><![CDATA[<h1 id="十美元重复租用-Vultr-CPU-VPS-gt-gt-AI学习"><a href="#十美元重复租用-Vultr-CPU-VPS-gt-gt-AI学习" class="headerlink" title="十美元重复租用 Vultr CPU VPS &gt;&gt; AI学习"></a><font color=red face="微软雅黑">十美元重复租用 Vultr CPU VPS &gt;&gt; AI学习</font></h1><h2 id="1-注册账户"><a href="#1-注册账户" class="headerlink" title="1.注册账户"></a>1.注册账户</h2><ul>
@@ -96,14 +104,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello hexo</title>
-    <url>/2016/05/08/%E5%90%8E%E7%AB%AF/Hello%20hexo/</url>
-    <content><![CDATA[<p><br><br><br><br><br><br><br></p>
-<center><font face="黑体" size=18>hexo & pages</font><center>
-<br><br><br><br><br><br><br>
-]]></content>
-  </entry>
-  <entry>
     <title>创建个人huggingface远程仓库</title>
     <url>/2020/10/08/%E5%90%8E%E7%AB%AF/%E5%85%B3%E4%BA%8Ehuggingface%E4%BB%93%E5%BA%93/</url>
     <content><![CDATA[<h1 id="创建个人huggingface远程仓库"><a href="#创建个人huggingface远程仓库" class="headerlink" title="创建个人huggingface远程仓库"></a>创建个人huggingface远程仓库</h1><h1 id="模型上传"><a href="#模型上传" class="headerlink" title="模型上传"></a>模型上传</h1><h2 id="1-transformers-cli-接口方式"><a href="#1-transformers-cli-接口方式" class="headerlink" title="1.transformers-cli 接口方式"></a>1.transformers-cli 接口方式</h2>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">transformers-cli upload .&#x2F;test&#x2F;</span><br></pre></td></tr></table></figure>
@@ -155,36 +155,6 @@
 </ul>
 <h1 id="发现问题"><a href="#发现问题" class="headerlink" title="发现问题"></a>发现问题</h1><ul>
 <li>服务器上git push到transformers.cc，上载150KB/S,存在问题，VPN到美国/加拿大节点，可以达到1M/S。</li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
-    <title>我的分享笔记</title>
-    <url>/2020/10/10/%E6%97%A5%E8%AE%B0/%E6%88%91%E7%9A%84%E5%88%86%E4%BA%AB%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h2 id="我的分享笔记"><a href="#我的分享笔记" class="headerlink" title="我的分享笔记"></a>我的分享笔记</h2><br>
-
-<ul>
-<li><a href="https://www.yuque.com/books/share/f63180be-3e1c-481c-92d9-75cccb03b026/lkvdoh">语雀笔记分享</a><br><br><br></li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
-    <title>Pycharm破解 无限重置试用</title>
-    <url>/2021/03/01/%E8%BD%AF%E4%BB%B6/Pycharm%E7%A0%B4%E8%A7%A3/</url>
-    <content><![CDATA[<h2 id="Pycharm-Eval-resetter-Crack"><a href="#Pycharm-Eval-resetter-Crack" class="headerlink" title="Pycharm Eval-resetter Crack"></a>Pycharm Eval-resetter Crack</h2><h2 id="此方法不区分操作系统（MacOS-amp-Windows）"><a href="#此方法不区分操作系统（MacOS-amp-Windows）" class="headerlink" title="此方法不区分操作系统（MacOS &amp; Windows）"></a>此方法不区分操作系统（MacOS &amp; Windows）</h2><h2 id="实现过程："><a href="#实现过程：" class="headerlink" title="实现过程："></a>实现过程：</h2><ul>
-<li><p>下载重置文件：<a href="https://cdn.jsdelivr.net/gh/zbmain/zbmain.github.io@main/files/software/pycharm/ide-eval-resetter-2.1.9.zip">[点击下载重置文件]</a></p>
-</li>
-<li><p>启动Pycharm，选择免费30天试用。</p>
-</li>
-<li><p>拖动破解文件.zip文件到Pycharm界面中，根据提示按钮reset，重启Pycharm。</p>
-</li>
-<li><p>Pycharm重启之后，选择 【帮助 - 试用】，即可看到剩余试用天数。</p>
-</li>
-<li><p>待试用天数减小之后，选择【帮助 - Eval Reset】，点击【Reload】&amp;【Reset】，实现重置试用为30天。</p>
-</li>
-<li><p>选中下图【Auto reset before pre reset】实现自动重置，即可不用手动再操作。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zbmain/imgchr@master/imgs/20210303094344.png"></p>
-</li>
 </ul>
 ]]></content>
   </entry>
@@ -389,6 +359,36 @@
 <li><p>只需浏览器代理HTTP上网，直接安装浏览器插件：iGG、集装箱即可，不需找节点配置。</p>
 </li>
 <li><p>如果要代理Socket，那只能安装SSR小飞机、V2ray。</p>
+</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>我的分享笔记</title>
+    <url>/2020/10/10/%E6%97%A5%E8%AE%B0/%E6%88%91%E7%9A%84%E5%88%86%E4%BA%AB%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="我的分享笔记"><a href="#我的分享笔记" class="headerlink" title="我的分享笔记"></a>我的分享笔记</h2><br>
+
+<ul>
+<li><a href="https://www.yuque.com/books/share/f63180be-3e1c-481c-92d9-75cccb03b026/lkvdoh">语雀笔记分享</a><br><br><br></li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>Pycharm破解 无限重置试用</title>
+    <url>/2021/03/01/%E8%BD%AF%E4%BB%B6/Pycharm%E7%A0%B4%E8%A7%A3/</url>
+    <content><![CDATA[<h2 id="Pycharm-Eval-resetter-Crack"><a href="#Pycharm-Eval-resetter-Crack" class="headerlink" title="Pycharm Eval-resetter Crack"></a>Pycharm Eval-resetter Crack</h2><h2 id="此方法不区分操作系统（MacOS-amp-Windows）"><a href="#此方法不区分操作系统（MacOS-amp-Windows）" class="headerlink" title="此方法不区分操作系统（MacOS &amp; Windows）"></a>此方法不区分操作系统（MacOS &amp; Windows）</h2><h2 id="实现过程："><a href="#实现过程：" class="headerlink" title="实现过程："></a>实现过程：</h2><ul>
+<li><p>下载重置文件：<a href="https://cdn.jsdelivr.net/gh/zbmain/zbmain.github.io@main/files/software/pycharm/ide-eval-resetter-2.1.9.zip">[点击下载重置文件]</a></p>
+</li>
+<li><p>启动Pycharm，选择免费30天试用。</p>
+</li>
+<li><p>拖动破解文件.zip文件到Pycharm界面中，根据提示按钮reset，重启Pycharm。</p>
+</li>
+<li><p>Pycharm重启之后，选择 【帮助 - 试用】，即可看到剩余试用天数。</p>
+</li>
+<li><p>待试用天数减小之后，选择【帮助 - Eval Reset】，点击【Reload】&amp;【Reset】，实现重置试用为30天。</p>
+</li>
+<li><p>选中下图【Auto reset before pre reset】实现自动重置，即可不用手动再操作。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zbmain/imgchr@master/imgs/20210303094344.png"></p>
 </li>
 </ul>
 ]]></content>
