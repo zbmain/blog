@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="google-site-verification" content="TZE0rZyIqLl10trYu3BWBWa1Vmz6HFwhb2OcNEK4u-s" />
+     <link rel="shortcut icon" href= /img/favicon.ico >
+    <title>
+        ZBlog
+    </title>
+    <meta name="description" content= 博客,zbmain,zblog,znote >
+    <meta name="keywords" content= zbmain,zblog,znote >
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-home
+ replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            常用排序算法(Python)
+        </p>
+        <hr>
+    </div>
+    <div class="post-content">
+        <h1 id="常用排序算法总结"><a href="#常用排序算法总结" class="headerlink" title="常用排序算法总结"></a>常用排序算法总结</h1><ul>
+<li><h3 id="快速排序：-O-NlogN-O-logN"><a href="#快速排序：-O-NlogN-O-logN" class="headerlink" title="快速排序： O(NlogN) O(logN)"></a>快速排序： O(NlogN) O(logN)</h3><ul>
+<li><p>基本思想：选出一个数，不断切分成大、小数组。</p>
+</li>
+<li><p>过程：</p>
+<ul>
+<li>从数组中取出一个数：key</li>
+<li>将比key小的置左，将比key大的置后</li>
+<li>对左右两个小数组重复步骤二，直到小数组无法再分</li>
+</ul>
+</li>
+<li><p>代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 快排写法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quicksort</span>(<span class="params">arr, low, high</span>):</span></span><br><span class="line">    <span class="keyword">if</span> low &lt; high:</span><br><span class="line">        pivot = partition(arr, low, high)</span><br><span class="line">        quicksort(arr, low, pivot - <span class="number">1</span>)</span><br><span class="line">        quicksort(arr, pivot + <span class="number">1</span>, high)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">partition</span>(<span class="params">arr, low, high</span>):</span></span><br><span class="line">    i = low - <span class="number">1</span>  <span class="comment"># 索引</span></span><br><span class="line">    pivot = arr[high]  <span class="comment"># 基准</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(low, high):</span><br><span class="line">        <span class="keyword">if</span> arr[j] &lt;= pivot:</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">            arr[i], arr[j] = arr[j], arr[i]</span><br><span class="line">    arr[i + <span class="number">1</span>], arr[high] = arr[high], arr[i + <span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> (i + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 精简写法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick_sort</span>(<span class="params">arr: List[<span class="built_in">int</span>]</span>):</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(arr) &lt; <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> arr</span><br><span class="line">    l = [n <span class="keyword">for</span> n <span class="keyword">in</span> arr[<span class="number">1</span>:] <span class="keyword">if</span> n &lt; arr[<span class="number">0</span>]]</span><br><span class="line">    r = [n <span class="keyword">for</span> n <span class="keyword">in</span> arr[<span class="number">1</span>:] <span class="keyword">if</span> n &gt; arr[<span class="number">0</span>]]</span><br><span class="line">    <span class="keyword">return</span> quick_sort(l) + [arr[<span class="number">0</span>]] + quick_sort(r)</span><br><span class="line"></span><br><span class="line"><span class="comment"># lambda一行写法</span></span><br><span class="line">q_sort = <span class="keyword">lambda</span> x: [] <span class="keyword">if</span> <span class="built_in">len</span>(x) == <span class="number">0</span> <span class="keyword">else</span> \</span><br><span class="line">    q_sort([s <span class="keyword">for</span> s <span class="keyword">in</span> x[<span class="number">1</span>:] <span class="keyword">if</span> s &lt; x[<span class="number">0</span>]]) \</span><br><span class="line">    + [x[<span class="number">0</span>]] + \</span><br><span class="line">    q_sort([s <span class="keyword">for</span> s <span class="keyword">in</span> x[<span class="number">1</span>:] <span class="keyword">if</span> s &gt; x[<span class="number">0</span>]])</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><h3 id="插入排序：-O-N2-O-1"><a href="#插入排序：-O-N2-O-1" class="headerlink" title="插入排序： O(N2) O(1)"></a>插入排序： O(N2) O(1)</h3><ul>
+<li><p>基本思想：构建有序序列，将未排序的数据，在已排序的序列中从后向前扫描，插入到相应位置。</p>
+</li>
+<li><p>过程：</p>
+<ul>
+<li>假设第一个数位置已排序好</li>
+<li>从第二个数开始与前面的比较，小数前移，不断优化前置的顺序数列</li>
+</ul>
+</li>
+<li><p>代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment"># 插入</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insertionSort</span>(<span class="params">arr</span>):</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(arr)):</span><br><span class="line">        key = arr[i]</span><br><span class="line">        j = i - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> j &gt;= <span class="number">0</span> <span class="keyword">and</span> key &lt; arr[j]:</span><br><span class="line">            arr[j + <span class="number">1</span>] = arr[j]</span><br><span class="line">            j -= <span class="number">1</span></span><br><span class="line">        arr[j + <span class="number">1</span>] = key</span><br><span class="line">    <span class="keyword">return</span> arr</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><h3 id="冒泡排序：-O-N2-O-1"><a href="#冒泡排序：-O-N2-O-1" class="headerlink" title="冒泡排序： O(N2) O(1)"></a>冒泡排序： O(N2) O(1)</h3><ul>
+<li><p>基本思想：比较相邻两个数的大小，较大的下沉，较小的前置</p>
+</li>
+<li><p>过程：</p>
+<ul>
+<li>比较两个数，若后面的数小，交换位置（小数前置/大数后置）</li>
+<li>两两比较，一直到比较最前的两个数。最终最小的数交换到起始位置</li>
+<li>重复执行，将2、3…n-1个最小数排列成功。</li>
+</ul>
+</li>
+<li><p>优化：设置一个状态，若某轮检索，没有交换任何元素，说明已经排好，直接停止。</p>
+</li>
+<li><p>代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bouble_sort</span>(<span class="params">arr: List[<span class="built_in">int</span>]</span>):</span></span><br><span class="line">    l = <span class="built_in">len</span>(arr) - <span class="number">1</span></span><br><span class="line">    flag = <span class="literal">True</span>  <span class="comment"># 优化点</span></span><br><span class="line">    i = j = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; l:</span><br><span class="line">        j = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> j &lt; l - i:</span><br><span class="line">            <span class="keyword">if</span> arr[j] &gt; arr[j + <span class="number">1</span>]:</span><br><span class="line">                arr[j], arr[j + <span class="number">1</span>] = arr[j + <span class="number">1</span>], arr[j]</span><br><span class="line">                flag = <span class="literal">False</span></span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> flag:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> arr</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><h3 id="堆排序：-O-NlogN-O-1"><a href="#堆排序：-O-NlogN-O-1" class="headerlink" title="堆排序： O(NlogN) O(1)"></a>堆排序： O(NlogN) O(1)</h3><ul>
+<li><p>基本思想：利用堆积构建完全二叉树。</p>
+</li>
+<li><p>过程：（具体步骤需要深入理解）</p>
+<ul>
+<li>将列表堆化（完全二叉树）父节点值 &gt; 左右节点值</li>
+<li>交换头尾元素后，摘出最大值，破坏堆积后重新进行堆化</li>
+<li>依次交换优化堆积后，列表排序成功</li>
+</ul>
+</li>
+<li><p>代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 堆排序</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heap_sort</span>(<span class="params">tree: List[<span class="built_in">int</span>]</span>):</span></span><br><span class="line">    n = <span class="built_in">len</span>(tree)</span><br><span class="line">    <span class="comment"># 根据列表，反向构建完全二叉树的堆积</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">        heapify(tree, n, i)</span><br><span class="line">    <span class="comment"># 依次交换尾、头元素，交换导致破坏堆结构后，再次优化堆积</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n - <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>):</span><br><span class="line">        tree[i], tree[<span class="number">0</span>] = tree[<span class="number">0</span>], tree[i]</span><br><span class="line">        heapify(tree, i, <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> tree</span><br><span class="line"></span><br><span class="line"><span class="comment"># 堆化</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heapify</span>(<span class="params">tree: List[<span class="built_in">int</span>], n, i</span>):</span></span><br><span class="line">    <span class="keyword">if</span> i &gt;= n:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="comment"># 列表堆化的三角节点与索引关系：i父节点p=(i-1)/2 左孩子l=2i+1 右孩子r=2i+2</span></span><br><span class="line">    l = <span class="number">2</span> * i + <span class="number">1</span></span><br><span class="line">    r = <span class="number">2</span> * i + <span class="number">2</span></span><br><span class="line">    <span class="built_in">max</span> = i	<span class="comment"># 设法找到最大值</span></span><br><span class="line">    <span class="keyword">if</span> l &lt; n <span class="keyword">and</span> tree[l] &gt; tree[i]:</span><br><span class="line">        <span class="built_in">max</span> = l</span><br><span class="line">    <span class="keyword">if</span> r &lt; n <span class="keyword">and</span> tree[r] &gt; tree[<span class="built_in">max</span>]:</span><br><span class="line">        <span class="built_in">max</span> = r</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">max</span> != i: <span class="comment"># 找到max后，若max不是原父节点i，交换一下，重新堆化</span></span><br><span class="line">        tree[i], tree[<span class="built_in">max</span>] = tree[<span class="built_in">max</span>], tree[i]</span><br><span class="line">        heapify(tree, n, <span class="built_in">max</span>)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+        <hr class="fhr">
+        <div id="vcomments"></div>
+    
+</div>
+    <div class="footer" id="footer">
+    <p><h4>版权所有 © 2021 | 作者: zbmain | 主题 By <a class="theme-author" target="_blank" rel="noopener" href="https://github.com/Xunzhuo/hexo-theme-coder" style="font-size:14px; color: #969696">Coder</a></h4>
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <span id="busuanzi_container_site_pv">本站浏览总访问量: <span id="busuanzi_value_site_pv"></span></span>
+        <span class="post-meta-divider">|</span>
+        <span id="busuanzi_container_site_uv">本站访问人数: <span id="busuanzi_value_site_uv"></span></span>
+    
+    <label class="el-switch el-switch-blue el-switch-sm" style="vertical-align: sub;">
+        <input type="checkbox" name="switch" id="update_style">
+        <span class="el-switch-style"></span>
+    </label>
+
+    <!--         <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+    document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script> -->
+</p>
+</div>
+
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="dzTCi2PqBUkSMyYTNXJN2xUK-gzGzoHsz">
+<input type="hidden" id="valine_appKey" value="WyBhk5cSnh1JAvKarcgpxOon">
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+
+<script src="/js/js.js"></script>
+
+<style type="text/css">
+.v * {
+color: #698fca;
+}
+.v .vlist .vcard .vhead .vsys {
+color: #3a3e4a;
+}
+.v .vlist .vcard .vh .vmeta .vat {
+color: #638fd5;
+}
+.v .vlist .vcard .vhead .vnick {
+color: #6ba1ff;
+}
+.v a {
+color: #8696b1;
+}
+.v .vlist .vcard .vhead .vnick:hover {
+color: #669bfc;
+}
+</style>
+    <script type="text/javascript" color="173,174,173" opacity='1' zIndex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</body>
+</html>

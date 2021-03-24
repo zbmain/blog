@@ -7,20 +7,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>Linux中使用matplotlib库报错问题</title>
-    <url>/2020/09/30/%E6%9C%8D%E5%8A%A1%E5%99%A8plt%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[<h1 id="Linux服务器中python使用matplotlib库报错："><a href="#Linux服务器中python使用matplotlib库报错：" class="headerlink" title="Linux服务器中python使用matplotlib库报错："></a>Linux服务器中python使用matplotlib库报错：</h1><h2 id="CXXABI-1-3-9-解决方案："><a href="#CXXABI-1-3-9-解决方案：" class="headerlink" title="CXXABI_1.3.9 解决方案："></a>CXXABI_1.3.9 解决方案：</h2><ul>
-<li><p>1.更新系统中的 libstdc++ 为connda中的版本（修改对应自己anaconda中版本文件）：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 按顺序执行(含义自行解读)</span><br><span class="line">sudo cp &#x2F;root&#x2F;anaconda3&#x2F;lib&#x2F;libstdc++.so.6.0.26 &#x2F;usr&#x2F;lib64&#x2F;</span><br><span class="line">sudo mv &#x2F;usr&#x2F;lib64&#x2F;libstdc++.so.6 &#x2F;usr&#x2F;lib64&#x2F;libstdc++.so.6_backup</span><br><span class="line">sudo ln -s &#x2F;root&#x2F;anaconda3&#x2F;lib&#x2F;libstdc++.so.6.0.26 &#x2F;usr&#x2F;lib64&#x2F;libstdc++.so.6</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>2.之后就可以画图了</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import matplotlib.pyplot</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
     <title>Hello hexo</title>
     <url>/2016/05/08/%E5%90%8E%E7%AB%AF/Hello%20hexo/</url>
     <content><![CDATA[<p><br><br><br><br><br><br><br></p>
@@ -159,6 +145,20 @@
 ]]></content>
   </entry>
   <entry>
+    <title>Linux中使用matplotlib库报错问题</title>
+    <url>/2020/09/30/%E5%90%8E%E7%AB%AF/%E6%9C%8D%E5%8A%A1%E5%99%A8plt%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[<h1 id="Linux服务器中python使用matplotlib库报错："><a href="#Linux服务器中python使用matplotlib库报错：" class="headerlink" title="Linux服务器中python使用matplotlib库报错："></a>Linux服务器中python使用matplotlib库报错：</h1><h2 id="CXXABI-1-3-9-解决方案："><a href="#CXXABI-1-3-9-解决方案：" class="headerlink" title="CXXABI_1.3.9 解决方案："></a>CXXABI_1.3.9 解决方案：</h2><ul>
+<li><p>1.更新系统中的 libstdc++ 为connda中的版本（修改对应自己anaconda中版本文件）：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 按顺序执行(含义自行解读)</span><br><span class="line">sudo cp &#x2F;root&#x2F;anaconda3&#x2F;lib&#x2F;libstdc++.so.6.0.26 &#x2F;usr&#x2F;lib64&#x2F;</span><br><span class="line">sudo mv &#x2F;usr&#x2F;lib64&#x2F;libstdc++.so.6 &#x2F;usr&#x2F;lib64&#x2F;libstdc++.so.6_backup</span><br><span class="line">sudo ln -s &#x2F;root&#x2F;anaconda3&#x2F;lib&#x2F;libstdc++.so.6.0.26 &#x2F;usr&#x2F;lib64&#x2F;libstdc++.so.6</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>2.之后就可以画图了</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import matplotlib.pyplot</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>Typora + PicGo + Github + Jsdelivr 生成Md图床</title>
     <url>/2021/01/02/%E5%B7%A5%E5%85%B7/Typora-PicGo-Github-Jsdelivr%E7%94%9F%E6%88%90Markdown%E5%9B%BE%E5%BA%8A/</url>
     <content><![CDATA[<h2 id="图床制作："><a href="#图床制作：" class="headerlink" title="图床制作："></a>图床制作：</h2><ul>
@@ -207,6 +207,19 @@
       <tags>
         <tag>imgchr</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>常用工具库</title>
+    <url>/2019/11/28/%E5%B7%A5%E5%85%B7/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E5%BA%93/</url>
+    <content><![CDATA[<h1 id="常用工具库"><a href="#常用工具库" class="headerlink" title="常用工具库"></a>常用工具库</h1><ul>
+<li>域名、顶级域名提取<ul>
+<li><a href="https://github.com/john-kurkowski/tldextract">https://github.com/john-kurkowski/tldextract</a></li>
+<li><a href="https://github.com/barseghyanartur/tld">https://github.com/barseghyanartur/tld</a></li>
+</ul>
+</li>
+<li></li>
+</ul>
+]]></content>
   </entry>
   <entry>
     <title>常用正则式</title>
@@ -284,19 +297,6 @@
       </tags>
   </entry>
   <entry>
-    <title>常用工具库</title>
-    <url>/2019/11/28/%E5%B7%A5%E5%85%B7/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E5%BA%93/</url>
-    <content><![CDATA[<h1 id="常用工具库"><a href="#常用工具库" class="headerlink" title="常用工具库"></a>常用工具库</h1><ul>
-<li>域名、顶级域名提取<ul>
-<li><a href="https://github.com/john-kurkowski/tldextract">https://github.com/john-kurkowski/tldextract</a></li>
-<li><a href="https://github.com/barseghyanartur/tld">https://github.com/barseghyanartur/tld</a></li>
-</ul>
-</li>
-<li></li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
     <title>科学上网</title>
     <url>/2019/12/01/%E5%B7%A5%E5%85%B7/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/</url>
     <content><![CDATA[<h2 id="上网工具："><a href="#上网工具：" class="headerlink" title="上网工具："></a>上网工具：</h2><ul>
@@ -364,8 +364,77 @@
 ]]></content>
   </entry>
   <entry>
+    <title>常用排序算法(Python)</title>
+    <url>/2021/03/10/%E7%A8%8B%E5%BA%8F%E5%91%98/%E5%B8%B8%E7%94%A8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="常用排序算法总结"><a href="#常用排序算法总结" class="headerlink" title="常用排序算法总结"></a>常用排序算法总结</h1><ul>
+<li><h3 id="快速排序：-O-NlogN-O-logN"><a href="#快速排序：-O-NlogN-O-logN" class="headerlink" title="快速排序： O(NlogN) O(logN)"></a>快速排序： O(NlogN) O(logN)</h3><ul>
+<li><p>基本思想：选出一个数，不断切分成大、小数组。</p>
+</li>
+<li><p>过程：</p>
+<ul>
+<li>从数组中取出一个数：key</li>
+<li>将比key小的置左，将比key大的置后</li>
+<li>对左右两个小数组重复步骤二，直到小数组无法再分</li>
+</ul>
+</li>
+<li><p>代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 快排写法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quicksort</span>(<span class="params">arr, low, high</span>):</span></span><br><span class="line">    <span class="keyword">if</span> low &lt; high:</span><br><span class="line">        pivot = partition(arr, low, high)</span><br><span class="line">        quicksort(arr, low, pivot - <span class="number">1</span>)</span><br><span class="line">        quicksort(arr, pivot + <span class="number">1</span>, high)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">partition</span>(<span class="params">arr, low, high</span>):</span></span><br><span class="line">    i = low - <span class="number">1</span>  <span class="comment"># 索引</span></span><br><span class="line">    pivot = arr[high]  <span class="comment"># 基准</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(low, high):</span><br><span class="line">        <span class="keyword">if</span> arr[j] &lt;= pivot:</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">            arr[i], arr[j] = arr[j], arr[i]</span><br><span class="line">    arr[i + <span class="number">1</span>], arr[high] = arr[high], arr[i + <span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> (i + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 精简写法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick_sort</span>(<span class="params">arr: List[<span class="built_in">int</span>]</span>):</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(arr) &lt; <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> arr</span><br><span class="line">    l = [n <span class="keyword">for</span> n <span class="keyword">in</span> arr[<span class="number">1</span>:] <span class="keyword">if</span> n &lt; arr[<span class="number">0</span>]]</span><br><span class="line">    r = [n <span class="keyword">for</span> n <span class="keyword">in</span> arr[<span class="number">1</span>:] <span class="keyword">if</span> n &gt; arr[<span class="number">0</span>]]</span><br><span class="line">    <span class="keyword">return</span> quick_sort(l) + [arr[<span class="number">0</span>]] + quick_sort(r)</span><br><span class="line"></span><br><span class="line"><span class="comment"># lambda一行写法</span></span><br><span class="line">q_sort = <span class="keyword">lambda</span> x: [] <span class="keyword">if</span> <span class="built_in">len</span>(x) == <span class="number">0</span> <span class="keyword">else</span> \</span><br><span class="line">    q_sort([s <span class="keyword">for</span> s <span class="keyword">in</span> x[<span class="number">1</span>:] <span class="keyword">if</span> s &lt; x[<span class="number">0</span>]]) \</span><br><span class="line">    + [x[<span class="number">0</span>]] + \</span><br><span class="line">    q_sort([s <span class="keyword">for</span> s <span class="keyword">in</span> x[<span class="number">1</span>:] <span class="keyword">if</span> s &gt; x[<span class="number">0</span>]])</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><h3 id="插入排序：-O-N2-O-1"><a href="#插入排序：-O-N2-O-1" class="headerlink" title="插入排序： O(N2) O(1)"></a>插入排序： O(N2) O(1)</h3><ul>
+<li><p>基本思想：构建有序序列，将未排序的数据，在已排序的序列中从后向前扫描，插入到相应位置。</p>
+</li>
+<li><p>过程：</p>
+<ul>
+<li>假设第一个数位置已排序好</li>
+<li>从第二个数开始与前面的比较，小数前移，不断优化前置的顺序数列</li>
+</ul>
+</li>
+<li><p>代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"> <span class="comment"># 插入</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insertionSort</span>(<span class="params">arr</span>):</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(arr)):</span><br><span class="line">        key = arr[i]</span><br><span class="line">        j = i - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> j &gt;= <span class="number">0</span> <span class="keyword">and</span> key &lt; arr[j]:</span><br><span class="line">            arr[j + <span class="number">1</span>] = arr[j]</span><br><span class="line">            j -= <span class="number">1</span></span><br><span class="line">        arr[j + <span class="number">1</span>] = key</span><br><span class="line">    <span class="keyword">return</span> arr</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><h3 id="冒泡排序：-O-N2-O-1"><a href="#冒泡排序：-O-N2-O-1" class="headerlink" title="冒泡排序： O(N2) O(1)"></a>冒泡排序： O(N2) O(1)</h3><ul>
+<li><p>基本思想：比较相邻两个数的大小，较大的下沉，较小的前置</p>
+</li>
+<li><p>过程：</p>
+<ul>
+<li>比较两个数，若后面的数小，交换位置（小数前置/大数后置）</li>
+<li>两两比较，一直到比较最前的两个数。最终最小的数交换到起始位置</li>
+<li>重复执行，将2、3…n-1个最小数排列成功。</li>
+</ul>
+</li>
+<li><p>优化：设置一个状态，若某轮检索，没有交换任何元素，说明已经排好，直接停止。</p>
+</li>
+<li><p>代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bouble_sort</span>(<span class="params">arr: List[<span class="built_in">int</span>]</span>):</span></span><br><span class="line">    l = <span class="built_in">len</span>(arr) - <span class="number">1</span></span><br><span class="line">    flag = <span class="literal">True</span>  <span class="comment"># 优化点</span></span><br><span class="line">    i = j = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; l:</span><br><span class="line">        j = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> j &lt; l - i:</span><br><span class="line">            <span class="keyword">if</span> arr[j] &gt; arr[j + <span class="number">1</span>]:</span><br><span class="line">                arr[j], arr[j + <span class="number">1</span>] = arr[j + <span class="number">1</span>], arr[j]</span><br><span class="line">                flag = <span class="literal">False</span></span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> flag:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> arr</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><h3 id="堆排序：-O-NlogN-O-1"><a href="#堆排序：-O-NlogN-O-1" class="headerlink" title="堆排序： O(NlogN) O(1)"></a>堆排序： O(NlogN) O(1)</h3><ul>
+<li><p>基本思想：利用堆积构建完全二叉树。</p>
+</li>
+<li><p>过程：（具体步骤需要深入理解）</p>
+<ul>
+<li>将列表堆化（完全二叉树）父节点值 &gt; 左右节点值</li>
+<li>交换头尾元素后，摘出最大值，破坏堆积后重新进行堆化</li>
+<li>依次交换优化堆积后，列表排序成功</li>
+</ul>
+</li>
+<li><p>代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 堆排序</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heap_sort</span>(<span class="params">tree: List[<span class="built_in">int</span>]</span>):</span></span><br><span class="line">    n = <span class="built_in">len</span>(tree)</span><br><span class="line">    <span class="comment"># 根据列表，反向构建完全二叉树的堆积</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">        heapify(tree, n, i)</span><br><span class="line">    <span class="comment"># 依次交换尾、头元素，交换导致破坏堆结构后，再次优化堆积</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n - <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>):</span><br><span class="line">        tree[i], tree[<span class="number">0</span>] = tree[<span class="number">0</span>], tree[i]</span><br><span class="line">        heapify(tree, i, <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> tree</span><br><span class="line"></span><br><span class="line"><span class="comment"># 堆化</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heapify</span>(<span class="params">tree: List[<span class="built_in">int</span>], n, i</span>):</span></span><br><span class="line">    <span class="keyword">if</span> i &gt;= n:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="comment"># 列表堆化的三角节点与索引关系：i父节点p=(i-1)/2 左孩子l=2i+1 右孩子r=2i+2</span></span><br><span class="line">    l = <span class="number">2</span> * i + <span class="number">1</span></span><br><span class="line">    r = <span class="number">2</span> * i + <span class="number">2</span></span><br><span class="line">    <span class="built_in">max</span> = i	<span class="comment"># 设法找到最大值</span></span><br><span class="line">    <span class="keyword">if</span> l &lt; n <span class="keyword">and</span> tree[l] &gt; tree[i]:</span><br><span class="line">        <span class="built_in">max</span> = l</span><br><span class="line">    <span class="keyword">if</span> r &lt; n <span class="keyword">and</span> tree[r] &gt; tree[<span class="built_in">max</span>]:</span><br><span class="line">        <span class="built_in">max</span> = r</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">max</span> != i: <span class="comment"># 找到max后，若max不是原父节点i，交换一下，重新堆化</span></span><br><span class="line">        tree[i], tree[<span class="built_in">max</span>] = tree[<span class="built_in">max</span>], tree[i]</span><br><span class="line">        heapify(tree, n, <span class="built_in">max</span>)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>我的分享笔记</title>
-    <url>/2020/10/10/%E6%97%A5%E8%AE%B0/%E6%88%91%E7%9A%84%E5%88%86%E4%BA%AB%E7%AC%94%E8%AE%B0/</url>
+    <url>/2020/10/10/%E7%AC%94%E8%AE%B0&amp;%E6%97%A5%E8%AE%B0/%E6%88%91%E7%9A%84%E5%88%86%E4%BA%AB%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="我的分享笔记"><a href="#我的分享笔记" class="headerlink" title="我的分享笔记"></a>我的分享笔记</h2><br>
 
 <ul>
