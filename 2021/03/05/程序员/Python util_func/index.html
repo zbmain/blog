@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="google-site-verification" content="TZE0rZyIqLl10trYu3BWBWa1Vmz6HFwhb2OcNEK4u-s" />
+     <link rel="shortcut icon" href= /img/favicon.ico >
+    <title>
+        ZBlog
+    </title>
+    <meta name="description" content= 博客,zbmain,zblog,znote >
+    <meta name="keywords" content= zbmain,zblog,znote >
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-home
+ replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            Python util_func
+        </p>
+        <hr>
+    </div>
+    <div class="post-content">
+        <h1 id="字符串-lt-gt-数组-互转"><a href="#字符串-lt-gt-数组-互转" class="headerlink" title="字符串&lt;-&gt;数组 互转"></a>字符串&lt;-&gt;数组 互转</h1><ul>
+<li>字符串 -&gt; 数组<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="string">&#x27;123&#x27;</span></span><br><span class="line"><span class="built_in">list</span>(x) <span class="comment"># [&#x27;1&#x27;, &#x27;2&#x27;, &#x27;3&#x27;]</span></span><br><span class="line">x = <span class="string">&#x27;1,2,3&#x27;</span></span><br><span class="line">x.split(<span class="string">&#x27;,&#x27;</span>) <span class="comment"># [&#x27;1&#x27;, &#x27;2&#x27;, &#x27;3&#x27;]</span></span><br></pre></td></tr></table></figure></li>
+<li>数组 -&gt; 字符串<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">arr = [<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>]</span><br><span class="line">x = <span class="string">&#x27;&#x27;</span>.join(arr)</span><br><span class="line">x = <span class="string">&#x27;,&#x27;</span>.join(arr)</span><br><span class="line"></span><br><span class="line">arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">x = <span class="string">&#x27;,&#x27;</span>.join(<span class="built_in">str</span>(i) <span class="keyword">for</span> i <span class="keyword">in</span> arr) <span class="comment"># 使用遍历强转元素格式</span></span><br><span class="line">x = <span class="string">&#x27;&#x27;</span>.join(arr) <span class="comment"># 若列表中有数字类型，使用join(arr)报错</span></span><br></pre></td></tr></table></figure>
+<h1 id="字符串-gt-整型数组"><a href="#字符串-gt-整型数组" class="headerlink" title="字符串 -&gt; 整型数组"></a>字符串 -&gt; 整型数组</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="string">&#x27;1 2 3&#x27;</span> <span class="comment">#有时候通过input输入</span></span><br><span class="line">print(x.split()) <span class="comment"># 元素类型为str:[&#x27;1&#x27;,&#x27;2&#x27;,&#x27;3&#x27;]</span></span><br><span class="line">print(<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, x.split()))) <span class="comment"># 将字符串转数组元素类型改为int:[1,2,3]</span></span><br></pre></td></tr></table></figure>
+<h1 id="最大值"><a href="#最大值" class="headerlink" title="最大值"></a>最大值</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 整数</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">MAX_INT = sys.maxsize</span><br><span class="line"><span class="comment"># 浮点数</span></span><br><span class="line">MAX_FLOAT = <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>) <span class="comment"># float(&#x27;-inf&#x27;)</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+    </div>
+
+    
+        <hr class="fhr">
+        <div id="vcomments"></div>
+    
+</div>
+    <div class="footer" id="footer">
+    <p><h4>版权所有 © 2021 | 作者: zbmain | 主题 By <a class="theme-author" target="_blank" rel="noopener" href="https://github.com/Xunzhuo/hexo-theme-coder" style="font-size:14px; color: #969696">Coder</a></h4>
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <span id="busuanzi_container_site_pv">本站浏览总访问量: <span id="busuanzi_value_site_pv"></span></span>
+        <span class="post-meta-divider">|</span>
+        <span id="busuanzi_container_site_uv">本站访问人数: <span id="busuanzi_value_site_uv"></span></span>
+    
+    <label class="el-switch el-switch-blue el-switch-sm" style="vertical-align: sub;">
+        <input type="checkbox" name="switch" id="update_style">
+        <span class="el-switch-style"></span>
+    </label>
+
+    <!--         <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+    document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script> -->
+</p>
+</div>
+
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="dzTCi2PqBUkSMyYTNXJN2xUK-gzGzoHsz">
+<input type="hidden" id="valine_appKey" value="WyBhk5cSnh1JAvKarcgpxOon">
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+
+<script src="/js/js.js"></script>
+
+<style type="text/css">
+.v * {
+color: #698fca;
+}
+.v .vlist .vcard .vhead .vsys {
+color: #3a3e4a;
+}
+.v .vlist .vcard .vh .vmeta .vat {
+color: #638fd5;
+}
+.v .vlist .vcard .vhead .vnick {
+color: #6ba1ff;
+}
+.v a {
+color: #8696b1;
+}
+.v .vlist .vcard .vhead .vnick:hover {
+color: #669bfc;
+}
+</style>
+    <script type="text/javascript" color="173,174,173" opacity='1' zIndex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</body>
+</html>

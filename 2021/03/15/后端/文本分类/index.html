@@ -28,16 +28,70 @@
  replay-btn" aria-hidden="true"></i></a>
     <div class="post-title">
         <p>
-            Linux中使用matplotlib库报错问题
+            文本分类
         </p>
         <hr>
     </div>
     <div class="post-content">
-        <h1 id="Linux服务器中python使用matplotlib库报错："><a href="#Linux服务器中python使用matplotlib库报错：" class="headerlink" title="Linux服务器中python使用matplotlib库报错："></a>Linux服务器中python使用matplotlib库报错：</h1><h2 id="CXXABI-1-3-9-解决方案："><a href="#CXXABI-1-3-9-解决方案：" class="headerlink" title="CXXABI_1.3.9 解决方案："></a>CXXABI_1.3.9 解决方案：</h2><ul>
-<li><p>1.更新系统中的 libstdc++ 为connda中的版本（修改对应自己anaconda中版本文件）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 按顺序执行(含义自行解读)</span><br><span class="line">sudo cp &#x2F;root&#x2F;anaconda3&#x2F;lib&#x2F;libstdc++.so.6.0.26 &#x2F;usr&#x2F;lib64&#x2F;</span><br><span class="line">sudo mv &#x2F;usr&#x2F;lib64&#x2F;libstdc++.so.6 &#x2F;usr&#x2F;lib64&#x2F;libstdc++.so.6_backup</span><br><span class="line">sudo ln -s &#x2F;root&#x2F;anaconda3&#x2F;lib&#x2F;libstdc++.so.6.0.26 &#x2F;usr&#x2F;lib64&#x2F;libstdc++.so.6</span><br></pre></td></tr></table></figure></li>
-<li><p>2.之后就可以画图了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot</span><br></pre></td></tr></table></figure></li>
+        <p>文本分类（Text2Cls）</p>
+<ul>
+<li><p>功能：实现根据一段文本信息，定位Cls标签。</p>
+</li>
+<li><p>后端服务：</p>
+<ul>
+<li>通过Neo4j搭建词汇谱图。</li>
+<li>构建标签与词汇的标签树。</li>
+</ul>
+</li>
+<li><p>预处理：</p>
+<ul>
+<li>文本挖掘：根据原始数据，对不同标签的文章内容进行实体提取，获得词汇集。<ul>
+<li>实现方案：<ul>
+<li>方式一：jieba、hanlp（提取名词）</li>
+<li>方式二：自行构建更好的NER任务模型（BiLSTM-CRF、Bert-CRF），对领域内的数据集进行大量人工实体标注样本、训练模型，效果更佳。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>图谱录入：</p>
+<ul>
+<li>将标签与实体 [Cls-(r:)-NE]，录入Neo4j图谱中。</li>
+</ul>
+</li>
+<li><p>标签召回：</p>
+<ul>
+<li>提取预测文本中的实体，match图谱类别标签。</li>
+</ul>
+</li>
+<li><p>匹配排序&amp;消歧：</p>
+<ul>
+<li>解释：可能有的实体同属多个标签下。</li>
+<li>方式一：（基于实体频次判定）<ul>
+<li>实体词典：对匹配的实体统计频次，排序选择最高频次的标签。</li>
+</ul>
+</li>
+<li>方式二：（基于语义层面判定，构建分类模型）<ul>
+<li>关于模型：<ul>
+<li>1.fasttext：构建标签数量个多分类模型，准确率较高。分类快，简单。<ul>
+<li>关于样本：<ul>
+<li>正样本：当前标签类别中的文本句子</li>
+<li>负样本：其他标签类别中的文本句子</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2.bert：表征更好，速度慢，增加[CLS]标签，多分类。</li>
+<li>3.xlnet：除了改进bert的缺点，还引入了transfomerXL的段循环，处理超长文本。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">图数据库：为了利用大型图数据库，使在线速度毫秒级。离线迭代出一个大型图数据库，可以满足很多问题。</span><br><span class="line">分类模型：为了解决匹配歧义问题，若单纯使用标签频次，可能偏差。transfomer系列的模型预测慢，可能需要蒸馏到小型RNN。</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 
     </div>

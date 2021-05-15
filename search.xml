@@ -145,16 +145,78 @@
 ]]></content>
   </entry>
   <entry>
+    <title>文本分类</title>
+    <url>/2021/03/15/%E5%90%8E%E7%AB%AF/%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/</url>
+    <content><![CDATA[<p>文本分类（Text2Cls）</p>
+<ul>
+<li><p>功能：实现根据一段文本信息，定位Cls标签。</p>
+</li>
+<li><p>后端服务：</p>
+<ul>
+<li>通过Neo4j搭建词汇谱图。</li>
+<li>构建标签与词汇的标签树。</li>
+</ul>
+</li>
+<li><p>预处理：</p>
+<ul>
+<li>文本挖掘：根据原始数据，对不同标签的文章内容进行实体提取，获得词汇集。<ul>
+<li>实现方案：<ul>
+<li>方式一：jieba、hanlp（提取名词）</li>
+<li>方式二：自行构建更好的NER任务模型（BiLSTM-CRF、Bert-CRF），对领域内的数据集进行大量人工实体标注样本、训练模型，效果更佳。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>图谱录入：</p>
+<ul>
+<li>将标签与实体 [Cls-(r:)-NE]，录入Neo4j图谱中。</li>
+</ul>
+</li>
+<li><p>标签召回：</p>
+<ul>
+<li>提取预测文本中的实体，match图谱类别标签。</li>
+</ul>
+</li>
+<li><p>匹配排序&amp;消歧：</p>
+<ul>
+<li>解释：可能有的实体同属多个标签下。</li>
+<li>方式一：（基于实体频次判定）<ul>
+<li>实体词典：对匹配的实体统计频次，排序选择最高频次的标签。</li>
+</ul>
+</li>
+<li>方式二：（基于语义层面判定，构建分类模型）<ul>
+<li>关于模型：<ul>
+<li>1.fasttext：构建标签数量个多分类模型，准确率较高。分类快，简单。<ul>
+<li>关于样本：<ul>
+<li>正样本：当前标签类别中的文本句子</li>
+<li>负样本：其他标签类别中的文本句子</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2.bert：表征更好，速度慢，增加[CLS]标签，多分类。</li>
+<li>3.xlnet：除了改进bert的缺点，还引入了transfomerXL的段循环，处理超长文本。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">图数据库：为了利用大型图数据库，使在线速度毫秒级。离线迭代出一个大型图数据库，可以满足很多问题。</span><br><span class="line">分类模型：为了解决匹配歧义问题，若单纯使用标签频次，可能偏差。transfomer系列的模型预测慢，可能需要蒸馏到小型RNN。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>Linux中使用matplotlib库报错问题</title>
     <url>/2020/09/30/%E5%90%8E%E7%AB%AF/%E6%9C%8D%E5%8A%A1%E5%99%A8plt%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<h1 id="Linux服务器中python使用matplotlib库报错："><a href="#Linux服务器中python使用matplotlib库报错：" class="headerlink" title="Linux服务器中python使用matplotlib库报错："></a>Linux服务器中python使用matplotlib库报错：</h1><h2 id="CXXABI-1-3-9-解决方案："><a href="#CXXABI-1-3-9-解决方案：" class="headerlink" title="CXXABI_1.3.9 解决方案："></a>CXXABI_1.3.9 解决方案：</h2><ul>
 <li><p>1.更新系统中的 libstdc++ 为connda中的版本（修改对应自己anaconda中版本文件）：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 按顺序执行(含义自行解读)</span><br><span class="line">sudo cp &#x2F;root&#x2F;anaconda3&#x2F;lib&#x2F;libstdc++.so.6.0.26 &#x2F;usr&#x2F;lib64&#x2F;</span><br><span class="line">sudo mv &#x2F;usr&#x2F;lib64&#x2F;libstdc++.so.6 &#x2F;usr&#x2F;lib64&#x2F;libstdc++.so.6_backup</span><br><span class="line">sudo ln -s &#x2F;root&#x2F;anaconda3&#x2F;lib&#x2F;libstdc++.so.6.0.26 &#x2F;usr&#x2F;lib64&#x2F;libstdc++.so.6</span><br></pre></td></tr></table></figure>
-<ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 按顺序执行(含义自行解读)</span><br><span class="line">sudo cp &#x2F;root&#x2F;anaconda3&#x2F;lib&#x2F;libstdc++.so.6.0.26 &#x2F;usr&#x2F;lib64&#x2F;</span><br><span class="line">sudo mv &#x2F;usr&#x2F;lib64&#x2F;libstdc++.so.6 &#x2F;usr&#x2F;lib64&#x2F;libstdc++.so.6_backup</span><br><span class="line">sudo ln -s &#x2F;root&#x2F;anaconda3&#x2F;lib&#x2F;libstdc++.so.6.0.26 &#x2F;usr&#x2F;lib64&#x2F;libstdc++.so.6</span><br></pre></td></tr></table></figure></li>
 <li><p>2.之后就可以画图了</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import matplotlib.pyplot</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
 </ul>
 ]]></content>
   </entry>
@@ -218,6 +280,73 @@
 </ul>
 </li>
 <li></li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>科学上网</title>
+    <url>/2019/12/01/%E5%B7%A5%E5%85%B7/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/</url>
+    <content><![CDATA[<h2 id="上网工具："><a href="#上网工具：" class="headerlink" title="上网工具："></a>上网工具：</h2><ul>
+<li>浏览器扩展插件（只能代理浏览器HTTP）：<ul>
+<li>集装箱<ul>
+<li>功能：<ul>
+<li>免费VPN，作者设置代理了Google搜索、Store、学术等，支持自定义Rule。</li>
+<li>百度网盘直链下载。</li>
+<li>Aria2UI界面。</li>
+<li>安装：<a href="https://a.newday.me/?scene=index_index_index">工具官网</a></li>
+<li><font color="red">自定义Rule，即可以自定义添加规则域名。</font></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>谷歌iGG<ul>
+<li>功能：永久免费提供谷歌搜索，gmail，Chrome Store,Android/Golang等谷歌产品加速访问。支持大部分谷歌二级域名。傻瓜式一键操作。</li>
+<li>安装：<a href="https://iguge.app/">CRX包链接</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<ul>
+<li><p>应用APP（可代理Socket）：</p>
+<ul>
+<li><p>小飞机</p>
+<ul>
+<li><p>介绍：代理工具，它只是工具软件，实现科学上网还需要配置节点。</p>
+</li>
+<li><p>下载：</p>
+<ul>
+<li><a href="https://github.com/shadowsocks/shadowsocks-windows/releases">Windows</a></li>
+<li><a href="https://github.com/shadowsocks/ShadowsocksX-NG/releases">MacOS</a></li>
+</ul>
+</li>
+<li><p>免费节点：</p>
+<ul>
+<li><a href="https://ssrtool.us/">时效长</a></li>
+<li><a href="https://lncn.org/">时效短</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>V2ray</p>
+<ul>
+<li>介绍：与小飞机（SSR）类似，V2ray加密更好。</li>
+<li>百度、github查找下载。</li>
+<li>免费节点：小飞机里的免费节点也有V2ray类型的。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<h2 id="心得建议："><a href="#心得建议：" class="headerlink" title="心得建议："></a>心得建议：</h2><ul>
+<li><p>只需浏览器代理HTTP上网，直接安装浏览器插件：iGG、集装箱即可，不需找节点配置。</p>
+</li>
+<li><p>如果要代理Socket，那只能安装SSR小飞机、V2ray。</p>
+</li>
 </ul>
 ]]></content>
   </entry>
@@ -297,152 +426,6 @@
       </tags>
   </entry>
   <entry>
-    <title>科学上网</title>
-    <url>/2019/12/01/%E5%B7%A5%E5%85%B7/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/</url>
-    <content><![CDATA[<h2 id="上网工具："><a href="#上网工具：" class="headerlink" title="上网工具："></a>上网工具：</h2><ul>
-<li>浏览器扩展插件（只能代理浏览器HTTP）：<ul>
-<li>集装箱<ul>
-<li>功能：<ul>
-<li>免费VPN，作者设置代理了Google搜索、Store、学术等，支持自定义Rule。</li>
-<li>百度网盘直链下载。</li>
-<li>Aria2UI界面。</li>
-<li>安装：<a href="https://a.newday.me/?scene=index_index_index">工具官网</a></li>
-<li><font color="red">自定义Rule，即可以自定义添加规则域名。</font></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>谷歌iGG<ul>
-<li>功能：永久免费提供谷歌搜索，gmail，Chrome Store,Android/Golang等谷歌产品加速访问。支持大部分谷歌二级域名。傻瓜式一键操作。</li>
-<li>安装：<a href="https://iguge.app/">CRX包链接</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<br>
-
-<ul>
-<li><p>应用APP（可代理Socket）：</p>
-<ul>
-<li><p>小飞机</p>
-<ul>
-<li><p>介绍：代理工具，它只是工具软件，实现科学上网还需要配置节点。</p>
-</li>
-<li><p>下载：</p>
-<ul>
-<li><a href="https://github.com/shadowsocks/shadowsocks-windows/releases">Windows</a></li>
-<li><a href="https://github.com/shadowsocks/ShadowsocksX-NG/releases">MacOS</a></li>
-</ul>
-</li>
-<li><p>免费节点：</p>
-<ul>
-<li><a href="https://ssrtool.us/">时效长</a></li>
-<li><a href="https://lncn.org/">时效短</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>V2ray</p>
-<ul>
-<li>介绍：与小飞机（SSR）类似，V2ray加密更好。</li>
-<li>百度、github查找下载。</li>
-<li>免费节点：小飞机里的免费节点也有V2ray类型的。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<br>
-
-<h2 id="心得建议："><a href="#心得建议：" class="headerlink" title="心得建议："></a>心得建议：</h2><ul>
-<li><p>只需浏览器代理HTTP上网，直接安装浏览器插件：iGG、集装箱即可，不需找节点配置。</p>
-</li>
-<li><p>如果要代理Socket，那只能安装SSR小飞机、V2ray。</p>
-</li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
-    <title>常用排序算法(Python)</title>
-    <url>/2021/03/10/%E7%A8%8B%E5%BA%8F%E5%91%98/%E5%B8%B8%E7%94%A8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="常用排序算法总结"><a href="#常用排序算法总结" class="headerlink" title="常用排序算法总结"></a>常用排序算法总结</h1><ul>
-<li><h3 id="快速排序：-O-NlogN-O-logN"><a href="#快速排序：-O-NlogN-O-logN" class="headerlink" title="快速排序： O(NlogN) O(logN)"></a>快速排序： O(NlogN) O(logN)</h3><ul>
-<li><p>基本思想：选出一个数，不断切分成大、小数组。</p>
-</li>
-<li><p>过程：</p>
-<ul>
-<li>从数组中取出一个数：key</li>
-<li>将比key小的置左，将比key大的置后</li>
-<li>对左右两个小数组重复步骤二，直到小数组无法再分</li>
-</ul>
-</li>
-<li><p>代码：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 快排写法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quicksort</span>(<span class="params">arr, low, high</span>):</span></span><br><span class="line">    <span class="keyword">if</span> low &lt; high:</span><br><span class="line">        pivot = partition(arr, low, high)</span><br><span class="line">        quicksort(arr, low, pivot - <span class="number">1</span>)</span><br><span class="line">        quicksort(arr, pivot + <span class="number">1</span>, high)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">partition</span>(<span class="params">arr, low, high</span>):</span></span><br><span class="line">    i = low - <span class="number">1</span>  <span class="comment"># 索引</span></span><br><span class="line">    pivot = arr[high]  <span class="comment"># 基准</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(low, high):</span><br><span class="line">        <span class="keyword">if</span> arr[j] &lt;= pivot:</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">            arr[i], arr[j] = arr[j], arr[i]</span><br><span class="line">    arr[i + <span class="number">1</span>], arr[high] = arr[high], arr[i + <span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> (i + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 精简写法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick_sort</span>(<span class="params">arr: List[<span class="built_in">int</span>]</span>):</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(arr) &lt; <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> arr</span><br><span class="line">    l = [n <span class="keyword">for</span> n <span class="keyword">in</span> arr[<span class="number">1</span>:] <span class="keyword">if</span> n &lt; arr[<span class="number">0</span>]]</span><br><span class="line">    r = [n <span class="keyword">for</span> n <span class="keyword">in</span> arr[<span class="number">1</span>:] <span class="keyword">if</span> n &gt; arr[<span class="number">0</span>]]</span><br><span class="line">    <span class="keyword">return</span> quick_sort(l) + [arr[<span class="number">0</span>]] + quick_sort(r)</span><br><span class="line"></span><br><span class="line"><span class="comment"># lambda一行写法</span></span><br><span class="line">q_sort = <span class="keyword">lambda</span> x: [] <span class="keyword">if</span> <span class="built_in">len</span>(x) == <span class="number">0</span> <span class="keyword">else</span> \</span><br><span class="line">    q_sort([s <span class="keyword">for</span> s <span class="keyword">in</span> x[<span class="number">1</span>:] <span class="keyword">if</span> s &lt; x[<span class="number">0</span>]]) \</span><br><span class="line">    + [x[<span class="number">0</span>]] + \</span><br><span class="line">    q_sort([s <span class="keyword">for</span> s <span class="keyword">in</span> x[<span class="number">1</span>:] <span class="keyword">if</span> s &gt; x[<span class="number">0</span>]])</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><h3 id="插入排序：-O-N2-O-1"><a href="#插入排序：-O-N2-O-1" class="headerlink" title="插入排序： O(N2) O(1)"></a>插入排序： O(N2) O(1)</h3><ul>
-<li><p>基本思想：构建有序序列，将未排序的数据，在已排序的序列中从后向前扫描，插入到相应位置。</p>
-</li>
-<li><p>过程：</p>
-<ul>
-<li>假设第一个数位置已排序好</li>
-<li>从第二个数开始与前面的比较，小数前移，不断优化前置的顺序数列</li>
-</ul>
-</li>
-<li><p>代码：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"> <span class="comment"># 插入</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insertionSort</span>(<span class="params">arr</span>):</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(arr)):</span><br><span class="line">        key = arr[i]</span><br><span class="line">        j = i - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> j &gt;= <span class="number">0</span> <span class="keyword">and</span> key &lt; arr[j]:</span><br><span class="line">            arr[j + <span class="number">1</span>] = arr[j]</span><br><span class="line">            j -= <span class="number">1</span></span><br><span class="line">        arr[j + <span class="number">1</span>] = key</span><br><span class="line">    <span class="keyword">return</span> arr</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><h3 id="冒泡排序：-O-N2-O-1"><a href="#冒泡排序：-O-N2-O-1" class="headerlink" title="冒泡排序： O(N2) O(1)"></a>冒泡排序： O(N2) O(1)</h3><ul>
-<li><p>基本思想：比较相邻两个数的大小，较大的下沉，较小的前置</p>
-</li>
-<li><p>过程：</p>
-<ul>
-<li>比较两个数，若后面的数小，交换位置（小数前置/大数后置）</li>
-<li>两两比较，一直到比较最前的两个数。最终最小的数交换到起始位置</li>
-<li>重复执行，将2、3…n-1个最小数排列成功。</li>
-</ul>
-</li>
-<li><p>优化：设置一个状态，若某轮检索，没有交换任何元素，说明已经排好，直接停止。</p>
-</li>
-<li><p>代码：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bouble_sort</span>(<span class="params">arr: List[<span class="built_in">int</span>]</span>):</span></span><br><span class="line">    l = <span class="built_in">len</span>(arr) - <span class="number">1</span></span><br><span class="line">    flag = <span class="literal">True</span>  <span class="comment"># 优化点</span></span><br><span class="line">    i = j = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; l:</span><br><span class="line">        j = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> j &lt; l - i:</span><br><span class="line">            <span class="keyword">if</span> arr[j] &gt; arr[j + <span class="number">1</span>]:</span><br><span class="line">                arr[j], arr[j + <span class="number">1</span>] = arr[j + <span class="number">1</span>], arr[j]</span><br><span class="line">                flag = <span class="literal">False</span></span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> flag:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> arr</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><h3 id="堆排序：-O-NlogN-O-1"><a href="#堆排序：-O-NlogN-O-1" class="headerlink" title="堆排序： O(NlogN) O(1)"></a>堆排序： O(NlogN) O(1)</h3><ul>
-<li><p>基本思想：利用堆积构建完全二叉树。</p>
-</li>
-<li><p>过程：（具体步骤需要深入理解）</p>
-<ul>
-<li>将列表堆化（完全二叉树）父节点值 &gt; 左右节点值</li>
-<li>交换头尾元素后，摘出最大值，破坏堆积后重新进行堆化</li>
-<li>依次交换优化堆积后，列表排序成功</li>
-</ul>
-</li>
-<li><p>代码：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 堆排序</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heap_sort</span>(<span class="params">tree: List[<span class="built_in">int</span>]</span>):</span></span><br><span class="line">    n = <span class="built_in">len</span>(tree)</span><br><span class="line">    <span class="comment"># 根据列表，反向构建完全二叉树的堆积</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">        heapify(tree, n, i)</span><br><span class="line">    <span class="comment"># 依次交换尾、头元素，交换导致破坏堆结构后，再次优化堆积</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n - <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>):</span><br><span class="line">        tree[i], tree[<span class="number">0</span>] = tree[<span class="number">0</span>], tree[i]</span><br><span class="line">        heapify(tree, i, <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> tree</span><br><span class="line"></span><br><span class="line"><span class="comment"># 堆化</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heapify</span>(<span class="params">tree: List[<span class="built_in">int</span>], n, i</span>):</span></span><br><span class="line">    <span class="keyword">if</span> i &gt;= n:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="comment"># 列表堆化的三角节点与索引关系：i父节点p=(i-1)/2 左孩子l=2i+1 右孩子r=2i+2</span></span><br><span class="line">    l = <span class="number">2</span> * i + <span class="number">1</span></span><br><span class="line">    r = <span class="number">2</span> * i + <span class="number">2</span></span><br><span class="line">    <span class="built_in">max</span> = i	<span class="comment"># 设法找到最大值</span></span><br><span class="line">    <span class="keyword">if</span> l &lt; n <span class="keyword">and</span> tree[l] &gt; tree[i]:</span><br><span class="line">        <span class="built_in">max</span> = l</span><br><span class="line">    <span class="keyword">if</span> r &lt; n <span class="keyword">and</span> tree[r] &gt; tree[<span class="built_in">max</span>]:</span><br><span class="line">        <span class="built_in">max</span> = r</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">max</span> != i: <span class="comment"># 找到max后，若max不是原父节点i，交换一下，重新堆化</span></span><br><span class="line">        tree[i], tree[<span class="built_in">max</span>] = tree[<span class="built_in">max</span>], tree[i]</span><br><span class="line">        heapify(tree, n, <span class="built_in">max</span>)</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
-    <title>我的分享笔记</title>
-    <url>/2020/10/10/%E7%AC%94%E8%AE%B0&amp;%E6%97%A5%E8%AE%B0/%E6%88%91%E7%9A%84%E5%88%86%E4%BA%AB%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h2 id="我的分享笔记"><a href="#我的分享笔记" class="headerlink" title="我的分享笔记"></a>我的分享笔记</h2><br>
-
-<ul>
-<li><a href="https://www.yuque.com/books/share/f63180be-3e1c-481c-92d9-75cccb03b026/lkvdoh">语雀笔记分享</a><br><br><br></li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
     <title>Pycharm破解 无限重置试用</title>
     <url>/2021/03/01/%E8%BD%AF%E4%BB%B6/Pycharm%E7%A0%B4%E8%A7%A3/</url>
     <content><![CDATA[<h2 id="Pycharm-Eval-resetter-Crack"><a href="#Pycharm-Eval-resetter-Crack" class="headerlink" title="Pycharm Eval-resetter Crack"></a>Pycharm Eval-resetter Crack</h2><h2 id="此方法不区分操作系统（MacOS-amp-Windows）"><a href="#此方法不区分操作系统（MacOS-amp-Windows）" class="headerlink" title="此方法不区分操作系统（MacOS &amp; Windows）"></a>此方法不区分操作系统（MacOS &amp; Windows）</h2><h2 id="实现过程："><a href="#实现过程：" class="headerlink" title="实现过程："></a>实现过程：</h2><ul>
@@ -459,6 +442,112 @@
 <li><p>选中下图【Auto reset before pre reset】实现自动重置，即可不用手动再操作。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/zbmain/imgchr@master/imgs/20210303094344.png"></p>
 </li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>我的分享笔记</title>
+    <url>/2020/10/10/%E7%AC%94%E8%AE%B0&amp;%E6%97%A5%E8%AE%B0/%E6%88%91%E7%9A%84%E5%88%86%E4%BA%AB%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="我的分享笔记"><a href="#我的分享笔记" class="headerlink" title="我的分享笔记"></a>我的分享笔记</h2><br>
+
+<ul>
+<li><a href="https://www.yuque.com/books/share/f63180be-3e1c-481c-92d9-75cccb03b026/lkvdoh">语雀笔记分享</a><br><br><br></li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>Python util_func</title>
+    <url>/2021/03/05/%E7%A8%8B%E5%BA%8F%E5%91%98/Python%20util_func/</url>
+    <content><![CDATA[<h1 id="字符串-lt-gt-数组-互转"><a href="#字符串-lt-gt-数组-互转" class="headerlink" title="字符串&lt;-&gt;数组 互转"></a>字符串&lt;-&gt;数组 互转</h1><ul>
+<li>字符串 -&gt; 数组<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = <span class="string">&#x27;123&#x27;</span></span><br><span class="line"><span class="built_in">list</span>(x) <span class="comment"># [&#x27;1&#x27;, &#x27;2&#x27;, &#x27;3&#x27;]</span></span><br><span class="line">x = <span class="string">&#x27;1,2,3&#x27;</span></span><br><span class="line">x.split(<span class="string">&#x27;,&#x27;</span>) <span class="comment"># [&#x27;1&#x27;, &#x27;2&#x27;, &#x27;3&#x27;]</span></span><br></pre></td></tr></table></figure></li>
+<li>数组 -&gt; 字符串<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">arr = [<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>]</span><br><span class="line">x = <span class="string">&#x27;&#x27;</span>.join(arr)</span><br><span class="line">x = <span class="string">&#x27;,&#x27;</span>.join(arr)</span><br><span class="line"></span><br><span class="line">arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">x = <span class="string">&#x27;,&#x27;</span>.join(<span class="built_in">str</span>(i) <span class="keyword">for</span> i <span class="keyword">in</span> arr) <span class="comment"># 使用遍历强转元素格式</span></span><br><span class="line">x = <span class="string">&#x27;&#x27;</span>.join(arr) <span class="comment"># 若列表中有数字类型，使用join(arr)报错</span></span><br></pre></td></tr></table></figure>
+<h1 id="字符串-gt-整型数组"><a href="#字符串-gt-整型数组" class="headerlink" title="字符串 -&gt; 整型数组"></a>字符串 -&gt; 整型数组</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = <span class="string">&#x27;1 2 3&#x27;</span> <span class="comment">#有时候通过input输入</span></span><br><span class="line">print(x.split()) <span class="comment"># 元素类型为str:[&#x27;1&#x27;,&#x27;2&#x27;,&#x27;3&#x27;]</span></span><br><span class="line">print(<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, x.split()))) <span class="comment"># 将字符串转数组元素类型改为int:[1,2,3]</span></span><br></pre></td></tr></table></figure>
+<h1 id="最大值"><a href="#最大值" class="headerlink" title="最大值"></a>最大值</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 整数</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">MAX_INT = sys.maxsize</span><br><span class="line"><span class="comment"># 浮点数</span></span><br><span class="line">MAX_FLOAT = <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>) <span class="comment"># float(&#x27;-inf&#x27;)</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>常用排序算法</title>
+    <url>/2021/03/10/%E7%A8%8B%E5%BA%8F%E5%91%98/%E5%B8%B8%E7%94%A8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<p>更多算法：<a href="https://book.zbmain.com/question/ALG/">https://book.zbmain.com/question/ALG/</a></p>
+<h2 id="哈希排序：O-N-O-1"><a href="#哈希排序：O-N-O-1" class="headerlink" title="哈希排序：O(N) O(1)"></a>哈希排序：O(N) O(1)</h2><ul>
+<li>基本思想：利用桶概念哈希排序，将数组中的值映射到有限的O(1)数值表中.类型：TF-IDF</li>
+<li>前提：桶的个数必须大于排序数组中最大值，可以自定义，也可以用max()获取</li>
+<li>过程：<ul>
+<li>生成一个有限的数值映射数组</li>
+<li>遍历排序数组，将其在映射数组中的频次+1</li>
+<li>遍历映射数组，将所有位置的数值放入原数组中（为了不增加空间复杂度），放入次数=频次</li>
+</ul>
+</li>
+<li>说明：<ul>
+<li>传说中的时间复杂度O(N)排序。因为桶被当成了常量，严格可以看作：O（N+MAX）</li>
+<li>空间复杂度O(1)。因为映射表长度也被看作常量，严格可以看作：O(MAX)</li>
+</ul>
+</li>
+<li>代码：<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> List</span><br><span class="line">    <span class="comment"># 长度必须大于数组中最大值</span></span><br><span class="line">    MAX = <span class="number">65535</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hash_sort</span>(<span class="params">nums:List[<span class="built_in">int</span>]</span>):</span></span><br><span class="line">        MAX = <span class="built_in">max</span>(nums)+<span class="number">1</span></span><br><span class="line">        lst = MAX * [<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> nums:</span><br><span class="line">            lst[i] += <span class="number">1</span></span><br><span class="line">        index = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">enumerate</span>(lst):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i[<span class="number">1</span>]):</span><br><span class="line">                nums[index] = i[<span class="number">0</span>]</span><br><span class="line">                index += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> nums</span><br></pre></td></tr></table></figure>
+<h2 id="桶排序：O-N-K-O-n-k"><a href="#桶排序：O-N-K-O-n-k" class="headerlink" title="桶排序：O(N+K) O(n*k)"></a>桶排序：O(N+K) O(n*k)</h2></li>
+<li>基本思想：构建N个桶,将数组中放置到各区间的桶内，进行小范围排序后依次取出。</li>
+<li>过程：<ul>
+<li>构建N各桶，N = (MAX-MIN)/len</li>
+<li>遍历数组，数组中的数置于各区间桶中</li>
+<li>小桶排序</li>
+<li>取出数，合并（此处使用了sum()高级用法）</li>
+</ul>
+</li>
+<li>说明：因为此处的sorted是O(NlogN)，但是它是经过分类后的小范围快排，故在比较上忽略掉了。</li>
+<li>代码：<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bucket_sort</span>(<span class="params">arr</span>):</span> </span><br><span class="line">  max_,min_=<span class="built_in">max</span>(arr),<span class="built_in">min</span>(arr)</span><br><span class="line">  stride=(max_-min_)/<span class="built_in">len</span>(arr)</span><br><span class="line">  buckets=[[] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(arr)+<span class="number">1</span>)]</span><br><span class="line">  <span class="keyword">for</span> num <span class="keyword">in</span> arr:</span><br><span class="line">      buckets[<span class="built_in">int</span>((num-min_)//stride)].append(num)</span><br><span class="line">  arr = [<span class="built_in">sorted</span>(bucket) <span class="keyword">for</span> bucket <span class="keyword">in</span> buckets]</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">sum</span>(arr,[])<span class="comment"># sum高级用法，加和从[]开始（二维数组中[]开始）</span></span><br><span class="line"></span><br><span class="line">print(bucket_sort([<span class="number">54</span>,<span class="number">26</span>,<span class="number">93</span>,<span class="number">21</span>,<span class="number">17</span>,<span class="number">77</span>,<span class="number">31</span>,<span class="number">44</span>,<span class="number">55</span>,<span class="number">20</span>]))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h2 id="快速排序：O-NlogN-O-logN"><a href="#快速排序：O-NlogN-O-logN" class="headerlink" title="快速排序：O(NlogN) O(logN)"></a>快速排序：O(NlogN) O(logN)</h2><ul>
+<li>基本思想: 选出一个数，不断切分成大、小数组。</li>
+<li>过程:<ul>
+<li>从数组中取出一个数：key</li>
+<li>将比key小的置左，将比key大的置后</li>
+<li>对左右两个小数组重复步骤二，直到小数组无法再分</li>
+</ul>
+</li>
+<li>复杂度：时间O(NlogN) 空间O(logN)</li>
+<li>代码:<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 快排写法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quicksort</span>(<span class="params">arr, low, high</span>):</span></span><br><span class="line">    <span class="keyword">if</span> low &lt; high:</span><br><span class="line">        pivot = partition(arr, low, high)</span><br><span class="line">        quicksort(arr, low, pivot - <span class="number">1</span>)</span><br><span class="line">        quicksort(arr, pivot + <span class="number">1</span>, high)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">partition</span>(<span class="params">arr, low, high</span>):</span></span><br><span class="line">    i = low - <span class="number">1</span>  <span class="comment"># 索引</span></span><br><span class="line">    pivot = arr[high]  <span class="comment"># 基准</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(low, high):</span><br><span class="line">        <span class="keyword">if</span> arr[j] &lt;= pivot:</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">            arr[i], arr[j] = arr[j], arr[i]</span><br><span class="line">    arr[i + <span class="number">1</span>], arr[high] = arr[high], arr[i + <span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> (i + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 精简写法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick_sort</span>(<span class="params">arr: List[<span class="built_in">int</span>]</span>):</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(arr) &lt; <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> arr</span><br><span class="line">    l = [n <span class="keyword">for</span> n <span class="keyword">in</span> arr[<span class="number">1</span>:] <span class="keyword">if</span> n &lt; arr[<span class="number">0</span>]]</span><br><span class="line">    r = [n <span class="keyword">for</span> n <span class="keyword">in</span> arr[<span class="number">1</span>:] <span class="keyword">if</span> n &gt; arr[<span class="number">0</span>]]</span><br><span class="line">    <span class="keyword">return</span> quick_sort(l) + [arr[<span class="number">0</span>]] + quick_sort(r)</span><br><span class="line"></span><br><span class="line"><span class="comment"># lambda一行写法</span></span><br><span class="line">q_sort = <span class="keyword">lambda</span> x: [] <span class="keyword">if</span> <span class="built_in">len</span>(x) == <span class="number">0</span> <span class="keyword">else</span> \</span><br><span class="line">    q_sort([s <span class="keyword">for</span> s <span class="keyword">in</span> x[<span class="number">1</span>:] <span class="keyword">if</span> s &lt; x[<span class="number">0</span>]]) \</span><br><span class="line">    + [x[<span class="number">0</span>]] + \</span><br><span class="line">    q_sort([s <span class="keyword">for</span> s <span class="keyword">in</span> x[<span class="number">1</span>:] <span class="keyword">if</span> s &gt; x[<span class="number">0</span>]])</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="插入排序：O-N²-O-1"><a href="#插入排序：O-N²-O-1" class="headerlink" title="插入排序：O(N²) O(1)"></a>插入排序：O(N²) O(1)</h2><ul>
+<li>基本思想：构建有序序列，将未排序的数据，在已排序的序列中从后向前扫描，插入到相应位置。</li>
+<li>过程：<ul>
+<li>假设第一个数位置已排序好</li>
+<li>从第二个数开始与前面的比较，小数前移，不断优化前置的顺序数列</li>
+</ul>
+</li>
+<li>复杂度：时间O(N²) 空间O(1)</li>
+<li>代码：<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"> <span class="comment"># 插入</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insertionSort</span>(<span class="params">arr</span>):</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(arr)):</span><br><span class="line">        key = arr[i]</span><br><span class="line">        j = i - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> j &gt;= <span class="number">0</span> <span class="keyword">and</span> key &lt; arr[j]:</span><br><span class="line">            arr[j + <span class="number">1</span>] = arr[j]</span><br><span class="line">            j -= <span class="number">1</span></span><br><span class="line">        arr[j + <span class="number">1</span>] = key</span><br><span class="line">    <span class="keyword">return</span> arr</span><br></pre></td></tr></table></figure>
+<h2 id="冒泡排序：O-N²-O-1"><a href="#冒泡排序：O-N²-O-1" class="headerlink" title="冒泡排序：O(N²) O(1)"></a>冒泡排序：O(N²) O(1)</h2></li>
+<li>基本思想：比较相邻两个数的大小，较大的下沉，较小的前置</li>
+<li>过程：<ul>
+<li>比较两个数，若后面的数小，交换位置（小数前置/大数后置）</li>
+<li>两两比较，一直到比较最前的两个数。最终最小的数交换到起始位置</li>
+<li>重复执行，将2、3…n-1个最小数排列成功。</li>
+</ul>
+</li>
+<li>优化：设置一个状态，若某轮检索，没有交换任何元素，说明已经排好，直接停止。</li>
+<li>复杂度：时间O(N²) 空间O(1)</li>
+<li>代码：<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bouble_sort</span>(<span class="params">arr: List[<span class="built_in">int</span>]</span>):</span></span><br><span class="line">    l = <span class="built_in">len</span>(arr) - <span class="number">1</span></span><br><span class="line">    flag = <span class="literal">True</span>  <span class="comment"># 优化点</span></span><br><span class="line">    i = j = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; l:</span><br><span class="line">        j = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> j &lt; l - i:</span><br><span class="line">            <span class="keyword">if</span> arr[j] &gt; arr[j + <span class="number">1</span>]:</span><br><span class="line">                arr[j], arr[j + <span class="number">1</span>] = arr[j + <span class="number">1</span>], arr[j]</span><br><span class="line">                flag = <span class="literal">False</span></span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> flag:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> arr</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="堆排序：O-NlogN-O-1"><a href="#堆排序：O-NlogN-O-1" class="headerlink" title="堆排序：O(NlogN) O(1)"></a>堆排序：O(NlogN) O(1)</h2><ul>
+<li>基本思想：利用堆积构建完全二叉树。</li>
+<li>过程：（具体步骤需要深入理解）<ul>
+<li>将列表堆化（完全二叉树）父节点值 &gt; 左右节点值</li>
+<li>交换头尾元素后，摘出最大值，破坏堆积后重新进行堆化</li>
+<li>依次交换优化堆积后，列表排序成功</li>
+</ul>
+</li>
+<li>复杂度：时间O(NlogN) 空间O(1)</li>
+<li>代码：<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 堆排序</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heap_sort</span>(<span class="params">tree: List[<span class="built_in">int</span>]</span>):</span></span><br><span class="line">    n = <span class="built_in">len</span>(tree)</span><br><span class="line">    <span class="comment"># 根据列表，反向构建完全二叉树的堆积</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">        heapify(tree, n, i)</span><br><span class="line">    <span class="comment"># 依次交换尾、头元素，交换导致破坏堆结构后，再次优化堆积</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n - <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>):</span><br><span class="line">        tree[i], tree[<span class="number">0</span>] = tree[<span class="number">0</span>], tree[i]</span><br><span class="line">        heapify(tree, i, <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> tree</span><br><span class="line"></span><br><span class="line"><span class="comment"># 堆化</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heapify</span>(<span class="params">tree: List[<span class="built_in">int</span>], n, i</span>):</span></span><br><span class="line">    <span class="keyword">if</span> i &gt;= n:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="comment"># 列表堆化的三角节点与索引关系：i父节点p=(i-1)/2 左孩子l=2i+1 右孩子r=2i+2</span></span><br><span class="line">    l = <span class="number">2</span> * i + <span class="number">1</span></span><br><span class="line">    r = <span class="number">2</span> * i + <span class="number">2</span></span><br><span class="line">    <span class="built_in">max</span> = i	<span class="comment"># 设法找到最大值</span></span><br><span class="line">    <span class="keyword">if</span> l &lt; n <span class="keyword">and</span> tree[l] &gt; tree[i]:</span><br><span class="line">        <span class="built_in">max</span> = l</span><br><span class="line">    <span class="keyword">if</span> r &lt; n <span class="keyword">and</span> tree[r] &gt; tree[<span class="built_in">max</span>]:</span><br><span class="line">        <span class="built_in">max</span> = r</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">max</span> != i: <span class="comment"># 找到max后，若max不是原父节点i，交换一下，重新堆化</span></span><br><span class="line">        tree[i], tree[<span class="built_in">max</span>] = tree[<span class="built_in">max</span>], tree[i]</span><br><span class="line">        heapify(tree, n, <span class="built_in">max</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="两个数组相对排序"><a href="#两个数组相对排序" class="headerlink" title="两个数组相对排序"></a>两个数组相对排序</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> List</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># 方法一 sort(key)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">relativeSortArray</span>(<span class="params">self, arr1: List[<span class="built_in">int</span>], arr2: List[<span class="built_in">int</span>]</span>) -&gt; List[int]:</span>        </span><br><span class="line">        ranks = &#123;x: i <span class="keyword">for</span> i, x <span class="keyword">in</span> <span class="built_in">enumerate</span>(arr2)&#125;</span><br><span class="line">        arr1.sort(key=<span class="keyword">lambda</span> x:(<span class="number">0</span>,ranks[x]) <span class="keyword">if</span> x <span class="keyword">in</span> ranks <span class="keyword">else</span> (<span class="number">1</span>,x))</span><br><span class="line">        <span class="keyword">return</span> arr1</span><br><span class="line">    <span class="comment"># 方法二 计数排序法</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">relativeSortArray2</span>(<span class="params">self,arr1: List[<span class="built_in">int</span>], arr2: List[<span class="built_in">int</span>]</span>) -&gt; List[int]:</span></span><br><span class="line">        upper = <span class="built_in">max</span>(arr1)</span><br><span class="line">        frequency = [<span class="number">0</span>] * (upper + <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> arr1:</span><br><span class="line">            frequency[x] += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        ans = <span class="built_in">list</span>()</span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> arr2:</span><br><span class="line">            ans.extend([x] * frequency[x])</span><br><span class="line">            frequency[x] = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(upper + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> frequency[x] &gt; <span class="number">0</span>:</span><br><span class="line">                ans.extend([x] * frequency[x])</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"><span class="comment"># 通过sort()参数指定键排序</span></span><br><span class="line">arr1,arr2 = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">2</span>,<span class="number">20</span>,<span class="number">19</span>,<span class="number">5</span>,<span class="number">1</span>],[<span class="number">2</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">6</span>]</span><br><span class="line">print(Solution().relativeSortArray(arr1,arr2))</span><br></pre></td></tr></table></figure></li>
 </ul>
 ]]></content>
   </entry>
